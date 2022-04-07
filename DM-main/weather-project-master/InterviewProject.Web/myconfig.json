@@ -1,0 +1,8 @@
+{
+    "WeatherString": {
+        "Url": "https://www.metaweather.com/api/location/search/?query="
+    },
+    "WeatherStringById": {
+        "Url": "https://www.metaweather.com/api/location/"
+    }
+}
