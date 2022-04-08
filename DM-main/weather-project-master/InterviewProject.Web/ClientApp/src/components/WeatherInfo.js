@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class WeatherInfo extends Component {
-  static displayName = WeatherInfo.name;
+    static displayName = WeatherInfo.name;
 
     constructor(props) {
         super(props);
@@ -31,15 +31,15 @@ export class WeatherInfo extends Component {
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Temp Min</th>
-                            <th>Temp Max</th>
+                            <th>Temp Min (C)</th>
+                            <th>Temp Max (C)</th>
                         </tr>
                     </thead>
                     <tbody>
                         {forecasts.length > 0 ?
                             forecasts.map(forecast =>
                                 <tr key={forecast.date}>
-                                    <td>{forecast.date}</td>
+                                    <td>{new Date(forecast.date).toLocaleDateString()}</td>
                                     <td>{forecast.tempMin}</td>
                                     <td>{forecast.tempMax}</td>
                                 </tr>

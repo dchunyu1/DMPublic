@@ -13,19 +13,23 @@ export class SearchLocation extends Component {
     static renderListLocation(locations, p) {
         return (
             <div>
-                <p> Please select city from list to get weather of that city </p>
-                <ul>
-                    {
+                {locations.length > 0 ?
+                    <p> Please click city name from list below to get weather infomation. </p>
+                    : <p></p>
+                }
+                <ul className="list-group">
+                    {locations.length > 0 ?
                         locations.map((data) => {
                             if (data) {
                                 return (
-                                    <li key={data.woeID} onClick={(e) => p.MeClick(e, data, p)} >
+                                    <li className="list-group-item list-group-item-action" key={data.woeID} onClick={(e) => p.MeClick(e, data, p)} >
                                         {data.locationName}
                                     </li>
                                 )
                             }
                             return null
                         })
+                        : <p>Sorry input does not match any city name, please try again.</p>
                     }
                 </ul>
             </div>
@@ -40,12 +44,17 @@ export class SearchLocation extends Component {
 
         return (
             <>
-                <h1>Location for Weather</h1>
+                <h1>City for Weather</h1>
                 <input type="text" className="form-control"
                     key="weather"
                     value={this.state.input}
-                    placeholder={"Enter location"}
+                    placeholder={"Please enter city name"}
                     onChange={(e) => this.setState({ input: e.target.value })}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            this.populateLocationData()
+                        }
+                    }}
                 />
                 <button className="btn btn-primary" onClick={() => this.populateLocationData()}> Search </button>
 
@@ -76,5 +85,5 @@ export class SearchLocation extends Component {
         });
 
     }
-    
+
 }
